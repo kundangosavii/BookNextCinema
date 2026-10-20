@@ -1,0 +1,19 @@
+@model cinema_booking.Models.Booking
+@{
+    ViewData["Title"] = "Booking confirmed";
+}
+<section class="confirmation-page container">
+    <div class="confirmation-card">
+        <div class="success-icon">✓</div>
+        <p class="eyebrow">BOOKING CONFIRMED</p>
+        <h1>See you at the movies.</h1>
+        <p class="lead">Your tickets for <strong>@Model.Movie.Title</strong> are ready.</p>
+        <div class="ticket-details">
+            <div><span>Booking number</span><strong>#@Model.Id</strong></div>
+            <div><span>Showtime</span><strong>@Model.Showtime</strong></div>
+            <div><span>Seats</span><strong>@Model.Seats</strong></div>
+            <div><span>Total</span><strong>$@Model.TotalPrice.ToString("0.00")</strong></div>
+        </div>
+        <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Browse more movies</a>
+    </div>
+</section>

@@ -1,0 +1,27 @@
+@model cinema_booking.Models.BookingViewModel
+@{
+    ViewData["Title"] = "Book tickets";
+}
+<section class="booking-page container">
+    <a class="back-link" asp-action="Details" asp-route-id="@Model.Movie.Id">← Back to @Model.Movie.Title</a>
+    <div class="booking-card">
+        <div class="booking-summary">
+            <p class="eyebrow">RESERVE YOUR SEATS</p>
+            <h1>Almost there.</h1>
+            <p class="lead">@Model.Movie.Title</p>
+            <div class="summary-line"><span>Showtime</span><strong>@Model.Booking.Showtime</strong></div>
+            <div class="summary-line"><span>Price per seat</span><strong>$12.50</strong></div>
+        </div>
+        <form asp-action="Book" asp-route-id="@Model.Movie.Id" method="post" class="booking-form">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Booking.Showtime" />
+            <div class="mb-3"><label asp-for="Booking.CustomerName" class="form-label"></label><input asp-for="Booking.CustomerName" class="form-control" autocomplete="name" /><span asp-validation-for="Booking.CustomerName" class="text-danger"></span></div>
+            <div class="mb-3"><label asp-for="Booking.CustomerEmail" class="form-label"></label><input asp-for="Booking.CustomerEmail" class="form-control" autocomplete="email" /><span asp-validation-for="Booking.CustomerEmail" class="text-danger"></span></div>
+            <div class="mb-4"><label asp-for="Booking.Seats" class="form-label"></label><input asp-for="Booking.Seats" class="form-control" min="1" max="10" /><span asp-validation-for="Booking.Seats" class="text-danger"></span></div>
+            <button type="submit" class="btn btn-primary btn-lg w-100">Confirm booking <span>→</span></button>
+        </form>
+    </div>
+</section>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

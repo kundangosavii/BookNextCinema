@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Cinema</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <nav class="container navbar navbar-expand-lg">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index"><span class="brand-mark">✦</span> LUMEN<span class="brand-dot">.</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-4">
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Movies</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About us</a></li>
+                    <li class="nav-item"><a class="nav-link nav-cta" asp-controller="Home" asp-action="Index" asp-fragment="movies">Book now <span>→</span></a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>@RenderBody()</main>
+    <footer class="site-footer" id="about">
+        <div class="container d-flex justify-content-between flex-wrap gap-3">
+            <span>© 2026 Lumen Cinema</span><span>Good stories. Great company.</span>
+        </div>
+    </footer>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

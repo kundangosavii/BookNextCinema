@@ -1,0 +1,39 @@
+@model cinema_booking.Models.HomeViewModel
+@{
+    ViewData["Title"] = "Now Showing";
+}
+
+<section class="hero">
+    <div class="hero-content">
+        <p class="eyebrow">YOUR NEXT GREAT NIGHT OUT</p>
+        <h1>Stories worth<br /><span>leaving home for.</span></h1>
+        <p class="hero-copy">Discover the latest releases and reserve your perfect seats in just a few clicks.</p>
+        <a class="btn btn-primary btn-lg" href="#movies">Browse movies <span aria-hidden="true">↓</span></a>
+    </div>
+</section>
+
+<section id="movies" class="movie-section">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">CURATED FOR YOU</p>
+            <h2>Now showing</h2>
+        </div>
+        <span class="movie-count">@Model.Movies.Count movies</span>
+    </div>
+    <div class="movie-grid">
+        @foreach (var movie in Model.Movies)
+        {
+            <article class="movie-card">
+                <a asp-controller="Cinema" asp-action="Details" asp-route-id="@movie.Id" class="poster-link">
+                    <img src="@movie.PosterUrl" alt="@movie.Title poster" />
+                    <span class="rating">@movie.Rating</span>
+                </a>
+                <div class="movie-info">
+                    <p class="movie-meta">@movie.Genre <span>·</span> @movie.Duration</p>
+                    <h3>@movie.Title</h3>
+                    <a class="btn btn-outline-primary w-100" asp-controller="Cinema" asp-action="Book" asp-route-id="@movie.Id">Book tickets</a>
+                </div>
+            </article>
+        }
+    </div>
+</section>

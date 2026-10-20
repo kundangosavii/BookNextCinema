@@ -1,0 +1,23 @@
+@model cinema_booking.Models.Movie
+@{
+    ViewData["Title"] = Model.Title;
+}
+<section class="details-page container">
+    <a class="back-link" asp-controller="Home" asp-action="Index">← Back to movies</a>
+    <div class="details-grid">
+        <img class="details-poster" src="@Model.PosterUrl" alt="@Model.Title poster" />
+        <div class="details-copy">
+            <p class="eyebrow">@Model.Genre</p>
+            <h1>@Model.Title</h1>
+            <p class="lead">@Model.Description</p>
+            <p class="movie-meta">@Model.Duration <span>·</span> Rated @Model.Rating</p>
+            <h2 class="h5 mt-5">Choose a showtime</h2>
+            <div class="showtime-list">
+                @foreach (var showtime in Model.Showtimes)
+                {
+                    <a class="showtime-pill" asp-action="Book" asp-route-id="@Model.Id" asp-route-showtime="@showtime">@showtime</a>
+                }
+            </div>
+        </div>
+    </div>
+</section>
